@@ -1,0 +1,78 @@
+#Linked List is a chain of Node
+#Each Main Node contains two field  i)data  ii)link to next Node
+class Node:
+    def __init__(self,data,next=None):#Initially next will be None
+        self.data=data#The data field
+        self.next=next#Link To the Next Node
+class LinkedList:
+    def __init__(self):#We create Empty Link
+    #This is refer to next but now this is empty
+        self.head=None
+    def print(self):
+        #Which traverse the whole data in linked list to print
+        if self.head is None:
+            print("The Linked List Is Empty")
+        if self.head is not None:
+            #We should begin the printing Process by HEAD
+            itr=self.head#itr=100 
+            #reference of first Node ex:data=33 next=110-->next adress
+
+            llstr=''
+            while itr is not None:
+                llstr+=str(itr.data)+'----->'#store data in lstr
+                itr=itr.next#The next Memory Adress stored in itr#Ex:itr.next=110
+                #So itr =110 Now self.head=110 so store next value in lstr
+            print(llstr)
+    def insert_after(self,data,after):
+       itr=self.head
+       while itr is not None:
+           if after == itr.data:
+               itr.next=Node(data,itr.next)
+           itr=itr.next    
+            
+    def add_begin(self,data):
+        #Create Node
+        new_node=Node(data,next=None)#We Only create Node So next refernce is None
+        new_node.next=self.head
+        self.head=new_node
+    def add_end(self,data):    
+        node=Node(data,next=None)
+        if self.head is None:
+            self.head=node
+        else:
+            itr=self.head
+            while itr.next is not None:
+                itr=itr.next
+            itr.next=node
+    def insert_index(self,index,data):
+
+        node=Node(data,None)
+        if index==0 :     
+            node.next=self.head
+            self.head=node    
+        
+        itr=self.head
+        c=0
+        while itr: 
+            if c==index-1:
+                itr.next=Node(data,itr.next)
+                break
+            itr=itr.next
+            c+=1
+if __name__=="__main__"   :
+    ll=LinkedList()
+    #ll.add_begin(99)
+    
+    ll.insert_index(0,"Brigette B")
+    ll.add_end("Kiara Mia")
+    ll.add_end("Sunny Leone")
+    ll.add_end("Mia-Khalifa")
+    ll.insert_index(1,"Angela White")
+    ll.insert_index(1,"Nichollete Shea")
+    ll.insert_index(1,"Shophie dee")
+    ll.insert_after("Moria Mills","Sunny Leone")
+    ll.insert_after("Ryan Conner","Angela White")
+    ll.print()
+    
+
+        
