@@ -59,20 +59,66 @@ class LinkedList:
                 break
             itr=itr.next
             c+=1
+    def insert_before(self,before,data):
+        #It is for adding before the first Node
+        if self.head == None:
+            return
+        else:
+            if self.head.data==before :
+                new_node=Node(data)
+                new_node.reference=self.head
+                self.head=new_node
+            itr=self.head
+            while itr.reference:
+                if itr.reference.data==before:
+                    new_node=Node(data)
+                    new_node.reference=itr.reference  
+                    itr.reference=new_node
+                    break
+                itr=itr.reference 
+            else:
+                print("The Given Input is Not Found")        
+    def delete_begin(self):
+        if self.head is None:
+            return
+        else:
+            self.head=self.head.reference
+    def delete_end(self):
+        if self.head is None:
+            return
+        else:
+            itr=self.head
+            while itr:
+                if itr.reference.reference==None:
+                    itr.reference=None
+                itr=itr.reference
+    def delete_key(self,key):
+        if self.head is None:
+            return
+        else:
+            itr=self.head
+            while itr:
+                if itr.reference.data==key:
+                    itr.reference=itr.reference.reference
+                    break
+                itr=itr.reference    
+    def insert_empty(self,data):
+        if self.head is None:
+            new_node=Node(data)
+            self.head=new_node
+            print(data ," is Added")
+        else:
+            print("It is Not empty")   
 if __name__=="__main__"   :
     ll=LinkedList()
-    #ll.add_begin(99)
-    
-    ll.insert_index(0,"Brigette B")
+    ll.insert_empty("Mallu Aunty")
     ll.add_end("Kiara Mia")
+    ll.add_end("Priya Rai")
     ll.add_end("Sunny Leone")
     ll.add_end("Mia-Khalifa")
-    ll.insert_index(1,"Angela White")
-    ll.insert_index(1,"Nichollete Shea")
-    ll.insert_index(1,"Shophie dee")
-    ll.insert_after("Moria Mills","Sunny Leone")
-    ll.insert_after("Ryan Conner","Angela White")
+    ll.insert_after("Diamond Jackson","Sunny Leone")
+    ll.delete_key("Sunny Leone")
+    ll.insert_before("Diamond Jackson","Diamond Kitty")
     ll.print()
-    
 
         
